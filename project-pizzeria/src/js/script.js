@@ -63,7 +63,7 @@
 
       thisProduct.initAccordion();
 
-      console.log('new Product', thisProduct);
+      //console.log('new Product', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
@@ -78,14 +78,44 @@
       menuContainer.appendChild(thisProduct.element);
     }
     initAccordion(){
-      
+      const thisProduct = this;
+      /* DONE find the clickable trigger (el. that should be react to clicking) */
+      const triggers = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+      //DONE console.log('trigger', trigger);
+      /* DONE START: click event listener to trigger */
+      for(let trigger of triggers){
+        trigger.addEventListener('click', function(){
+          console.log('clicked');
+          /* DONE prevent default action for event */
+          event.preventDefault();
+        });
+        /* toogle active class on el. of thisProduct */
+
+        /* find all active products */
+        const productsActive = [ document.querySelectorAll(select.all.menuProductsActive) ];
+        console.log('aktywne produkty', productsActive);
+        /* LOOP: for each actives product */
+        productsActive.forEach(checkIfActivesArePartOfThisProduct);
+            /* START: if the active product isn't the el. of thisProduct */
+            const checkIfActivesArePartOfThisProduct = function (productsActive){
+              productsActive != trigger;
+              return;
+              /* remove class active for the active product */
+            
+            
+          /* END: if  */
+          };
+        /*END LOOP */
+        
+      /* END click event listener to triggre */
+      }
     }
   }
 
   const app = {
     initMenu: function(){
       const thisApp = this;
-      console.log('thisApp.data', thisApp.data);
+      //console.log('thisApp.data', thisApp.data);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -101,10 +131,10 @@
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
     },
