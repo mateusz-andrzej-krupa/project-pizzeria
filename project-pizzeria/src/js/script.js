@@ -96,19 +96,19 @@
         console.log('aktywne produkty', productsActive);
         /* LOOP: for each actives product */
         productsActive.forEach(checkIfActivesArePartOfThisProduct);
-            /* START: if the active product isn't the el. of thisProduct */
-            const checkIfActivesArePartOfThisProduct = function (productsActive){
-              productsActive != trigger;
-              return;
-              /* remove class active for the active product */
-            
-            
+        /* START: if the active product isn't the el. of thisProduct */
+          function checkIfActivesArePartOfThisProduct(productsActive){
+            productsActive != trigger;
+            /* remove class active for the active product */
+            productsActive.classList.remove('active');
+            console.log(productsActive);
+          }
           /* END: if  */
-          };
+        }
         /*END LOOP */
         
       /* END click event listener to triggre */
-      }
+      
     }
   }
 
