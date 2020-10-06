@@ -97,19 +97,13 @@
         //console.log('aktywne produkty', productsActive);
         /* LOOP: for each actives product */
         for(let active in productsActive){
-          //XXX productsActive.forEach(checkIfActivesArePartOfThisProduct);
         /* START: if the active product isn't the el. of thisProduct */
           if (active != thisProduct){
-              //XXX function checkIfActivesArePartOfThisProduct(productsActive){
-              //XXX productsActive != trigger;
             /* remove class active for the active product */
-            thisProduct.element.remove('active');
+            active.element.remove('active');
             console.log('shit', active);
-              //XXX thisProduct.element.remove('active');
-              //XXX console.log('test',productsActive);
-          } else {
-            return;
-          
+            } else {
+            thisProduct.classList.add('active');
         /* END: if  */
           }
         }
