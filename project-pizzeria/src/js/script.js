@@ -81,7 +81,7 @@
       const thisProduct = this;
       /* DONE find the clickable trigger (el. that should be react to clicking) */
       const triggers = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
-      //DONE console.log('trigger', trigger);
+      //DONE console.log('triggers', triggers);
       /* DONE START: click event listener to trigger */
       for(let trigger of triggers){
         trigger.addEventListener('click', function(){
@@ -90,25 +90,32 @@
           event.preventDefault();
         });
         /* toogle active class on el. of thisProduct */
-
+        thisProduct.element.classList.toggle(select.menuProduct.clickable);
+        //console.log('toggleElement',thisProduct.element);
         /* find all active products */
-        const productsActive = [ document.querySelectorAll(select.all.menuProductsActive) ];
-        console.log('aktywne produkty', productsActive);
+        const productsActive =  document.querySelectorAll(select.all.menuProductsActive) ;
+        //console.log('aktywne produkty', productsActive);
         /* LOOP: for each actives product */
-        productsActive.forEach(checkIfActivesArePartOfThisProduct);
+        for(let active in productsActive){
+          //XXX productsActive.forEach(checkIfActivesArePartOfThisProduct);
         /* START: if the active product isn't the el. of thisProduct */
-          function checkIfActivesArePartOfThisProduct(productsActive){
-            productsActive != trigger;
+          if (active != thisProduct){
+              //XXX function checkIfActivesArePartOfThisProduct(productsActive){
+              //XXX productsActive != trigger;
             /* remove class active for the active product */
-            productsActive.classList.remove('active');
-            console.log(productsActive);
+            thisProduct.element.remove('active');
+            console.log('shit', active);
+              //XXX thisProduct.element.remove('active');
+              //XXX console.log('test',productsActive);
+          } else {
+            return;
+          
+        /* END: if  */
           }
-          /* END: if  */
         }
-        /*END LOOP */
-        
+      /*END LOOP */
+      }
       /* END click event listener to triggre */
-      
     }
   }
 
