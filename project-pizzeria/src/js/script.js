@@ -79,31 +79,33 @@
     }
     initAccordion(){
       const thisProduct = this;
+      //console.log('thisProduct',thisProduct);
       /* DONE find the clickable trigger (el. that should be react to clicking) */
-      const triggers = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
-      //DONE console.log('triggers', triggers);
+      let triggers = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+      //console.log('triggers', triggers);
       /* DONE START: click event listener to trigger */
-      for(let trigger of triggers){
+      for (let trigger of triggers){
         trigger.addEventListener('click', function(){
-          console.log('clicked');
+          console.log('target just has been clicked'); //potwierdzenie klikniecia
           /* DONE prevent default action for event */
           event.preventDefault();
         });
         /* toogle active class on el. of thisProduct */
-        thisProduct.element.classList.toggle(select.menuProduct.clickable);
+        //document.classList.toggle(select.menuProduct.clickable);
         //console.log('toggleElement',thisProduct.element);
         /* find all active products */
-        const productsActive =  document.querySelectorAll(select.all.menuProductsActive) ;
-        //console.log('aktywne produkty', productsActive);
+        const allActiveProducts =  document.getElementsByClassName(classNames.menuProduct.wrapperActive);
+        //console.log('aktywne produkty', allActiveProducts);
         /* LOOP: for each actives product */
-        for(let active in productsActive){
+        for(let product in allActiveProducts){
         /* START: if the active product isn't the el. of thisProduct */
-          if (active != thisProduct){
+          if (product != thisProduct.element){
             /* remove class active for the active product */
-            active.element.remove('active');
-            console.log('shit', active);
+            product.classList.remove(active);
+            console.log('shit', product);
             } else {
-            thisProduct.classList.add('active');
+            //thisProduct.classList.add('classNames.menuProduct.wrapperActive');
+            console.log('test');
         /* END: if  */
           }
         }
