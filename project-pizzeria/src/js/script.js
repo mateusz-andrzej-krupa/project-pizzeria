@@ -79,39 +79,42 @@
     }
     initAccordion(){
       const thisProduct = this;
-      //console.log('thisProduct',thisProduct);
+
       /* DONE find the clickable trigger (el. that should be react to clicking) */
-      let triggers = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
-      //console.log('triggers', triggers);
+      const allAcordionElements = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+
       /* DONE START: click event listener to trigger */
-      for (let trigger of triggers){
-        trigger.addEventListener('click', function(event){
+      for (let oneAccordionElement of allAcordionElements){
+        oneAccordionElement.addEventListener('click', function(event){
           console.log('target just has been clicked'); //potwierdzenie klikniecia
+
           /* DONE prevent default action for event */
           event.preventDefault();
-        });
-        /* toogle active class on el. of thisProduct */
-        const toggledElements = thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
-        console.log('toggleElement', toggledElements);
-        /* find all active products */
-        const allActiveProducts = [ document.querySelectorAll(select.all.menuProductsActive) ];
-        console.log('aktywne produkty', allActiveProducts);
-        /* LOOP: for each actives product */
-        for (let product of allActiveProducts){
-          /* START: if the active product isn't the el. of thisProduct */
-          if (product != thisProduct.element){
-            /* remove class active for the active product */
-            product.classList.remove(select.menuProduct.clickable);
-            //console.log('product', product);
-          } else {
-            thisProduct.classList.add(select.menuProduct.clickable);
-            console.log('thisProduct');
-            /* END: if  */
+
+          /* toogle active class on el. of thisProduct */
+          const addClassActiveToClicked = thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
+          console.log('element just clicked', addClassActiveToClicked);
+
+          /* find all active products */
+          const allActiveProducts = document.querySelectorAll(select.all.menuProductsActive);
+          console.log('aktywne produkty', allActiveProducts);
+
+          /* LOOP: for each actives product */
+          for(const product of allActiveProducts){
+
+            /* START: if the active product isn't the el. of thisProduct */
+            if(product !== thisProduct.element){
+        
+              /* remove class active for the active product */
+              product.classList.remove(classNames.menuProduct.wrapperActive);
+              
+              /* END: if  */
+            }
           }
-        }
-      /*END LOOP */
-      }
+        /*END LOOP */
+        });
       /* END click event listener to triggre */
+      }
     }
   }
 
