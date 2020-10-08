@@ -85,28 +85,28 @@
       //console.log('triggers', triggers);
       /* DONE START: click event listener to trigger */
       for (let trigger of triggers){
-        trigger.addEventListener('click', function(){
+        trigger.addEventListener('click', function(event){
           console.log('target just has been clicked'); //potwierdzenie klikniecia
           /* DONE prevent default action for event */
           event.preventDefault();
         });
         /* toogle active class on el. of thisProduct */
-        //document.classList.toggle(select.menuProduct.clickable);
-        //console.log('toggleElement',thisProduct.element);
+        const toggledElements = thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
+        console.log('toggleElement', toggledElements);
         /* find all active products */
-        const allActiveProducts =  document.getElementsByClassName(classNames.menuProduct.wrapperActive);
-        //console.log('aktywne produkty', allActiveProducts);
+        const allActiveProducts = [ document.querySelectorAll(select.all.menuProductsActive) ];
+        console.log('aktywne produkty', allActiveProducts);
         /* LOOP: for each actives product */
-        for(let product in allActiveProducts){
-        /* START: if the active product isn't the el. of thisProduct */
+        for (let product of allActiveProducts){
+          /* START: if the active product isn't the el. of thisProduct */
           if (product != thisProduct.element){
             /* remove class active for the active product */
-            product.classList.remove(active);
-            console.log('shit', product);
-            } else {
-            //thisProduct.classList.add('classNames.menuProduct.wrapperActive');
-            console.log('test');
-        /* END: if  */
+            product.classList.remove(select.menuProduct.clickable);
+            //console.log('product', product);
+          } else {
+            thisProduct.classList.add(select.menuProduct.clickable);
+            console.log('thisProduct');
+            /* END: if  */
           }
         }
       /*END LOOP */
