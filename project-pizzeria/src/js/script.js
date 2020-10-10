@@ -61,7 +61,13 @@
 
       thisProduct.renderInMenu();
 
+      thisProduct.getElements();
+
       thisProduct.initAccordion();
+
+      thisProduct.initOrderFrom();
+
+      thisProduct.processOrder();
 
       //console.log('new Product', thisProduct);
     }
@@ -77,11 +83,21 @@
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
+
     initAccordion(){
       const thisProduct = this;
 
       /* DONE find the clickable trigger (el. that should be react to clicking) */
-      const allAcordions = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+      const allAcordions = thisProduct.accordionTrigger; //lub: const allAcordions = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
 
       /* DONE START: click event listener to trigger */
       for (let oneAccordion of allAcordions){
@@ -92,7 +108,7 @@
           event.preventDefault();
 
           /* toogle active class on el. of thisProduct */
-          const addClassActiveToClicked = thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
+          const addClassActiveToClicked = thisProduct.element.classList.contains(classNames.menuProduct.wrapperActive);
           //console.log('element just clicked', addClassActiveToClicked);
           if (addClassActiveToClicked){
             thisProduct.element.classList.remove('active');
@@ -120,6 +136,32 @@
       /* END click event listener to triggre */
       }
     }
+
+    initOrderFrom(){
+      const thisProduct = this;
+      thisProduct.form.addEventListener('submit', function(event){ //'submit || click' 
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+      
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          event.preventDefault();
+          thisProduct.processOrder();
+        });
+      }
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+
+    processOrder(){
+      const thisProduct = this; //console.log('processOrder',thisProduct);
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log(formData);
+    }
+
   }
 
   const app = {
