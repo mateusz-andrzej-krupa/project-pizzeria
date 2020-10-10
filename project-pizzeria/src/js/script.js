@@ -81,11 +81,11 @@
       const thisProduct = this;
 
       /* DONE find the clickable trigger (el. that should be react to clicking) */
-      const allAcordionElements = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+      const allAcordions = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
 
       /* DONE START: click event listener to trigger */
-      for (let oneAccordionElement of allAcordionElements){
-        oneAccordionElement.addEventListener('click', function(event){
+      for (let oneAccordion of allAcordions){
+        oneAccordion.addEventListener('click', function(event){
           console.log('target just has been clicked'); //potwierdzenie klikniecia
 
           /* DONE prevent default action for event */
@@ -93,11 +93,15 @@
 
           /* toogle active class on el. of thisProduct */
           const addClassActiveToClicked = thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
-          console.log('element just clicked', addClassActiveToClicked);
-
+          //console.log('element just clicked', addClassActiveToClicked);
+          if (addClassActiveToClicked){
+            thisProduct.element.classList.remove('active');
+          } else {
+            thisProduct.element.classList.add('active');
+          }
+          
           /* find all active products */
           const allActiveProducts = document.querySelectorAll(select.all.menuProductsActive);
-          console.log('aktywne produkty', allActiveProducts);
 
           /* LOOP: for each actives product */
           for(const product of allActiveProducts){
