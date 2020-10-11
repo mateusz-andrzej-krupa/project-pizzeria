@@ -209,7 +209,7 @@
           }
 
           /* DONE assign all img to const  */
-          const allImgs = thisProduct.imageWrapper;
+          const allImgs = thisProduct.imageWrapper.querySelectorAll('.'+paramId+'-'+optionId);
           //console.log('allImgs', allImgs);
 
           /* img - if opt is marked  */
