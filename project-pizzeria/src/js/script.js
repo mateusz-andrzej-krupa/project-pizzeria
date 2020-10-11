@@ -139,11 +139,21 @@
 
     initOrderFrom(){
       const thisProduct = this;
-      thisProduct.form.addEventListener('submit', function(event){ //'submit || click' 
+      
+      thisProduct.form.addEventListener('submit', function(event){  
         event.preventDefault();
         thisProduct.processOrder();
       });
-      
+      // DONE - improve yourself: 'submit || click'
+      /*
+      const test = function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      };
+      thisProduct.form.addEventListener('submit', test);
+      thisProduct.form.addEventListener('click', test);
+      */
+
       for(let input of thisProduct.formInputs){
         input.addEventListener('change', function(){
           event.preventDefault();
@@ -159,7 +169,49 @@
     processOrder(){
       const thisProduct = this; //console.log('processOrder',thisProduct);
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log(formData);
+      //console.log(formData);
+
+      /* DONE get default product's price and assign to const "price" */
+      let price = thisProduct.data.price;
+      //console.log('price', price);
+      
+      /* for1 each param in obj params do */
+      const paramsAll = thisProduct.data.params;
+      for (let paramId in thisProduct.data.params){
+        const param = paramsAll[paramId];
+        //console.log('param', param);
+
+        /* DONE for2 each option in obj options do */
+        for (let optionId in param.options){
+          const option = param.options[optionId];
+          //console.log('option', option);
+
+          /* DONE option is marked */
+          const optionMarked = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+          //console.log('optMarked', optionMarked);
+
+          /* DONE check if opt is marked and if it is not-default */
+          
+          if ( optionMarked && !option.default ) { 
+            
+            /* DONE sum priceDefault and price of option -increse */
+            price += option.price;
+            //console.log('dodano cene skladnika (',option.price, ') suma = ', price);
+            
+            /* DONE else if opt-def is unmarked - decrease price  */
+          } else if ( !optionMarked && option.default ) {
+            price -= option.price; 
+            //console.log('odjeto cene skladnika (',option.price, ') suma = ', price);
+            
+          /* end if */
+          }
+        /* end for2 */
+        }
+      /* end for1 */
+      }
+      /* DONE display calculated price */
+      thisProduct.priceElem.innerHTML = price;
+      //console.log('priceCalculated', price);
     }
 
   }
