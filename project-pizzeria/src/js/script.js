@@ -208,26 +208,23 @@
           /* end if */
           }
 
-          /* DONE assign all img to const  */
-          const allImgs = thisProduct.imageWrapper.querySelectorAll('.'+paramId+'-'+optionId);
-          //console.log('allImgs', allImgs);
-
-          /* img - if opt is marked  */
-          if ( optionMarked ) {
-          
-            /* for img from allImg - add active class from classnames img vis */
-            for (let oneImg in allImgs) {
-              //oneImg.classList.add(classNames.menuProduct.imageVisible);
-              console.log('test');
+          /* znajdz wszystkie obrazki dla tego accordeonu */
+          const imgSelector = '.' + paramId + '-' + optionId;
+          //console.log(imgSelector);
+          const allImgs = thisProduct.imageWrapper.querySelectorAll(imgSelector);
+          //console.log('allImgs', allImgs)
+         
+          /* jesli opcja jest zaznaczona to nadaj im klase active */
+          if (optionMarked) {
+            for (let img of allImgs){
+              img.classList.add(classNames.menuProduct.imageVisible);
             }
-
-          /* img - else if - remove this class */
-          
-          } else  {
-            /* for img from allImg - add active class from classnames img vis */
-
+            /* jesli opcja jest odznaczona to usuń im klase active */
+          } else {
+            for (let img of allImgs){
+              img.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
-
         /* end for2 */
         }
       /* end for1 */
