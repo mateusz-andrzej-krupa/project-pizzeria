@@ -67,9 +67,11 @@
 
       thisProduct.initOrderFrom();
 
+      thisProduct.initAmountWidget();
+
       thisProduct.processOrder();
 
-      //console.log('new Product', thisProduct);
+      console.log('new Product', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
@@ -93,6 +95,8 @@
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
 
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+
+      thisProduct.amountWidgetElem = thisProduct.element.querySelectorAll(select.menuProduct.amountWidget);
     }
 
     initAccordion(){
@@ -234,6 +238,31 @@
       //console.log('priceCalculated', price);
     }
 
+    initAmountWidget(){
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem);
+    }
+  }
+
+  class amountWidget{
+    constructor(element){
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+
+      console.log('AmountWidged', thisWidget);
+      console.log('constructor arguments', element);
+    }
+    getElements(element){
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
   }
 
   const app = {
@@ -255,10 +284,10 @@
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
-      //console.log('thisApp:', thisApp);
-      //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
-      //console.log('templates:', templates);
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
     },
