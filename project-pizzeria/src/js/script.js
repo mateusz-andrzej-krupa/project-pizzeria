@@ -71,7 +71,7 @@
 
       thisProduct.processOrder();
 
-      console.log('new Product', thisProduct);
+      //console.log('new Product', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
@@ -96,7 +96,7 @@
 
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
 
-      thisProduct.amountWidgetElem = thisProduct.element.querySelectorAll(select.menuProduct.amountWidget);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordion(){
@@ -256,11 +256,12 @@
     }
     getElements(element){
       const thisWidget = this;
-
+    
       thisWidget.element = element;
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+      
     }
 
   }
@@ -284,10 +285,10 @@
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
     },
