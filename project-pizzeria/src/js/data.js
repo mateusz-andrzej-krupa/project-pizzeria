@@ -7,7 +7,8 @@ dataSource.products = {
     price: 9,
     description: 'Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.',
     images: [
-      '<img class="active" src="images/doughnut.svg">',
+      '<img class= src="images/doughnut.svg">',
+      '<img class="active" src="images/doughnut1.jpeg">',
     ],
   },
   breakfast: {

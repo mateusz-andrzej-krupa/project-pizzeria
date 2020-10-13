@@ -259,6 +259,10 @@
 
       thisWidget.getElements(element);
 
+      thisWidget.value = settings.amountWidget.defaultValue;
+      console.log('default value of input value', thisWidget.value);
+
+
       thisWidget.setValue(thisWidget.input.value);
 
       thisWidget.initActions();
@@ -277,14 +281,18 @@
 
     setValue(value){
       const thisWidget = this;
-
+      
+      //console.log('test Value', thisWidget.value);
       const newValue = parseInt(value);
-      //console.log('test', newValue);
+      //console.log('test newValue', newValue);
 
-      /* TODO add validation */
-
-      thisWidget.value = newValue;
-      thisWidget.announce()
+      /* change value if newValue is different or/and newValue >= defMin or/and newValue <= defmax */
+      
+      if( thisWidget.newValue != value || newValue >= settings.amountWidget.defaultMin || newValue <= settings.amountWidget.defaultMax){
+        thisWidget.value = newValue;
+        thisWidget.announce();
+        console.log('test: newValue:',newValue);
+      }  
       thisWidget.input.value = thisWidget.value;
     }
 
