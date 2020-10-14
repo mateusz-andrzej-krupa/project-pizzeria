@@ -260,7 +260,7 @@
       thisWidget.getElements(element);
 
       thisWidget.value = settings.amountWidget.defaultValue;
-      console.log('default value of input value', thisWidget.value);
+      //console.log('default value of input value', thisWidget.value);
 
 
       thisWidget.setValue(thisWidget.input.value);
@@ -282,17 +282,23 @@
     setValue(value){
       const thisWidget = this;
       
-      //console.log('test Value', thisWidget.value);
-      const newValue = parseInt(value);
-      //console.log('test newValue', newValue);
-
-      /* change value if newValue is different or/and newValue >= defMin or/and newValue <= defmax */
+      //console.log('test-value-default-incomming', thisWidget.value);
+      //console.log('test-value-solo', value);
       
-      if( thisWidget.newValue != value || newValue >= settings.amountWidget.defaultMin || newValue <= settings.amountWidget.defaultMax){
+      const newValue = Number(value);
+      //console.log('test newValue', newValue);
+      
+      /* DONE change value if newValue is different or/and newValue >= defMin or/and newValue <= defmax */
+      if( 
+        newValue != thisWidget.value &&
+        newValue >= settings.amountWidget.defaultMin &&
+        newValue <= settings.amountWidget.defaultMax
+      ){
         thisWidget.value = newValue;
         thisWidget.announce();
-        console.log('test: newValue:',newValue);
-      }  
+        console.log('test-newValue-is:', newValue);
+      }
+      //thisWidgetValue is equal default value set in constructor;
       thisWidget.input.value = thisWidget.value;
     }
 

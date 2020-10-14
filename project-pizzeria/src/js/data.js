@@ -17,7 +17,11 @@ dataSource.products = {
     price: 9,
     description: 'There\'s no better way to start your day than indulging yourself with a cup of fresh Italian coffee and crispy waffels. Made just for you on the spot, this breakfast combo has been our guests\' favorite for over 50 years.',
     images: [
-      '<img class="active" src="images/breakfast.svg">',
+      '<img class="" src="images/breakfast.svg">',
+      '<img class="coffee-latte" src="images/breakfast coffee/late.png">',
+      '<img class="coffee-cappuccino" src="images/breakfast coffee/cappucino.png">',
+      '<img class="coffee-espresso" src="images/breakfast coffee/espresso.png">',
+      '<img class="coffee-macchiato" src="images/breakfast coffee/macchiato.png">',
     ],
     params: {
       coffee: {
