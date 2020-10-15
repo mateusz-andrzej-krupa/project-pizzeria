@@ -284,7 +284,7 @@
         priceCalculated: ${ thisProduct.price }
         `
         );*/
-      console.log(thisProduct.params); 
+      //console.log(thisProduct.params); 
     }
 
     initAmountWidget(){
@@ -304,9 +304,10 @@
       thisProduct.name = thisProduct.data.name;
       thisProduct.amount = thisProduct.amountWidget.value;
 
-      console.log(`
+      /* //done console.log(`
         thisProduct.name >> ${ thisProduct.name }
         thisProduct.amount >> ${ thisProduct.amount }`);
+      */
 
       /* generate HTMLbased on template*/
       const generateHTML = templates.cartProduct(thisProduct);
@@ -321,6 +322,7 @@
       cartElement.appendChild(thisProduct.element);
 
       app.cart.add(thisProduct);
+
     }
     
   }
@@ -444,10 +446,12 @@
     }
 
     add(menuProduct){
-      //thisCart = this;
+      const thisCart = this;
 
       //console.log('this to: ', thisCart);
-      console.log('adding product', menuProduct);
+      //console.log('adding product', menuProduct);
+      thisCart.products.push(menuProduct);
+      console.log(`thisCart.products ${ thisCart.products }`);
     }
   }
 
