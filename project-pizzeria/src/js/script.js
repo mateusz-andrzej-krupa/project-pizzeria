@@ -302,7 +302,8 @@
       const thisProduct = this;
 
       thisProduct.name = thisProduct.data.name;
-      thisProduct.amount = thisProduct.initAmountWidget.value;
+      thisProduct.amount = thisProduct.amountWidget.value;
+
       console.log(`
         thisProduct.name >> ${ thisProduct.name }
         thisProduct.amount >> ${ thisProduct.amount }`);

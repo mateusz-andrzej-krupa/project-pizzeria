@@ -1,8 +1,9 @@
 .cart {
-  position: absolute;
+  position: fixed;
   width: 300px; // CODE CHANGED
   right: 0;
-  top: $base-size;
+  top: 70px; // CODE CHANGED from "$base-size"
+  right: $base-size; // CODE ADDED
   padding: ($base-size) ($base-size * 1.5);
   background: $color-light;
   border-radius: $radius;
