@@ -8,7 +8,7 @@ dataSource.products = {
     description: 'Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.',
     images: [
       '<img class= src="images/doughnut.svg">',
-      '<img class="active" src="images/doughnut1.jpeg">',
+      '<img class="active" src="images/doughnut/doughnut1.jpeg">',
     ],
   },
   breakfast: {
@@ -17,11 +17,11 @@ dataSource.products = {
     price: 9,
     description: 'There\'s no better way to start your day than indulging yourself with a cup of fresh Italian coffee and crispy waffels. Made just for you on the spot, this breakfast combo has been our guests\' favorite for over 50 years.',
     images: [
-      '<img class="" src="images/breakfast.svg">',
-      '<img class="coffee-latte" src="images/breakfast coffee/late.png">',
-      '<img class="coffee-cappuccino" src="images/breakfast coffee/cappucino.png">',
-      '<img class="coffee-espresso" src="images/breakfast coffee/espresso.png">',
-      '<img class="coffee-macchiato" src="images/breakfast coffee/macchiato.png">',
+      '<img class="" src="images/breakfast-coffee/breakfast.svg">',
+      '<img class="coffee-latte" src="images/breakfast-coffee/late.png">',
+      '<img class="coffee-cappuccino" src="images/breakfast-coffee/cappucino.png">',
+      '<img class="coffee-espresso" src="images/breakfast-coffee/espresso.png">',
+      '<img class="coffee-macchiato" src="images/breakfast-coffee/macchiato.png">',
     ],
     params: {
       coffee: {
