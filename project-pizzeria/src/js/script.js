@@ -418,20 +418,21 @@
     initActions(){
       const thisCart = this;
       /* cart react to click*/
-      thisCart.dom.cartAccordionTrigger.addEventListener('click', function(event){
+      /*thisCart.dom.cartAccordionTrigger.addEventListener('click', function(event){
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+      */
 
       // other solution: cart mouseover || click
-      /*
+      
       const cartReact = function(event){
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive); 
       };
       thisCart.dom.cartAccordionTrigger.addEventListener('click', cartReact);
       thisCart.dom.cartAccordionTrigger.addEventListener('mouseover', cartReact);
-      */
+      
     }
 
     add(menuProduct){
@@ -441,21 +442,17 @@
       //console.log('adding product', menuProduct);
 
       /* generate HTMLbased on template*/
-      const generateHTML = templates.cartProduct(thisCart);
+      const generateHTML = templates.cartProduct(menuProduct);
 
       /* HTML save as const generatedDOM */
       const generatedDOM = utils.createDOMFromHTML(generateHTML);
-      console.log(generatedDOM);
+      //console.log(`DOM ${ generatedDOM }`);
+
       /* add generatedDOM to thisCart.dom.productList */
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      /* find menu container */
-      //const cartElement = document.querySelector(select.containerOf.cart);
-
-      /* add element to menu */
-      //cartElement.appendChild(menuProduct.element);
-
-      thisCart.products.push(menuProduct);
+      /* add menuPeoduct and gen.DOM as new class */
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products ${', thisCart.products);
     }
   }
