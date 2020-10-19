@@ -399,7 +399,7 @@
       const thisCart = this;
 
       thisCart.products = [];
-      console.log(`produkty: ${ thisCart.products }`);
+      //console.log(`produkty: ${ thisCart.products }`);
 
       thisCart.getElements(element);
       
@@ -445,7 +445,13 @@
       
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
-      })
+      });
+      
+      thisCart.dom.productList.addEventListener('remove', function(){
+        //debugger;
+        //console.log(`test remove-done`);
+        thisCart.remove(event.detail.CartProduct);
+      });
     }
 
     add(menuProduct){
@@ -488,17 +494,42 @@
       }
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      /*
       console.log(`totale do koszyka:
       sumaryczna ilosc ${ thisCart.totalNumber }
       wartośc produktów ${ thisCart.subtotalPrice }
       całokowita wartość ${ thisCart.totalPrice }
       `);
+      */
 
       for (let key of thisCart.renderTotalsKeys) {
         for (let elem of thisCart.dom[key]) {
           elem.innerHTML = thisCart[key];
         }
       }
+    }
+    
+    remove(cartProduct){
+      const thisCart = this;
+      
+      /* do stałej index przypisz wartosc indexu cartProduct w tabl thisCart.Product */
+      console.log('wyswielt tablice productow:', thisCart.products);
+      console.log('co to jest cartProduct:', cartProduct);
+      
+      const index = thisCart.products.indexOf(cartProduct);
+      console.log('wyswietl indexOf usuwanego produktu', index);
+      console.log('wyświetl value at this indexOf ', thisCart.products[index]);
+      
+
+      /* z tablicy thisCart.products usuń el. o tym indexie */
+      thisCart.products.splice(index, 1);
+      
+      /* z DOM usun el. cartProduct.dom.wrapper */
+      //console.log(`el DOM do usuniecia: ${ cartProduct.dom.wrapper }`);
+      //cartProduct.dom.wrapper.remove();
+
+      /*DONE wywyłaj metodę update aby przeliczyc ceny */
+      thisCart.update();
     }
   }
 
@@ -566,7 +597,8 @@
           cartProduct: thisCartProduct,
         },
       });
-      console.log(`test remove action`);
+      //console.log(`test remove click-done`);
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
     }
 
     initActions(){
@@ -574,9 +606,12 @@
 
       thisCartProduct.dom.edit.addEventListener('click', function(event){
         event.preventDefault();
+        //console.log(`test click to edit btn-done`);
+
       });
       thisCartProduct.dom.remove.addEventListener('click', function(event){
         event.preventDefault();
+        //console.log(`test click to remove btn-done`);
         thisCartProduct.remove();
       });
     }
