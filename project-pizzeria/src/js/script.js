@@ -637,6 +637,7 @@
 
       thisApp.data = {};
       const url = settings.db.url + '/' + settings.db.product;
+      console.log(url);
 
       fetch(url)
         .then(function(rawResponse){
