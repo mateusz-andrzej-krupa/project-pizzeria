@@ -399,7 +399,7 @@
       const thisCart = this;
 
       thisCart.products = [];
-      //console.log(`produkty: ${ thisCart.products }`);
+      //console.log(`produkty w koszyku: ${ thisCart.products }`);
 
       thisCart.getElements(element);
       
@@ -450,7 +450,7 @@
       thisCart.dom.productList.addEventListener('remove', function(){
         //debugger;
         //console.log(`test remove-done`);
-        thisCart.remove(event.detail.CartProduct);
+        thisCart.remove(event.detail.cartProduct);
       });
     }
 
@@ -472,7 +472,7 @@
 
       /* add menuPeoduct and gen.DOM as new class */
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      //console.log('thisCart.products ${', thisCart.products);
+      console.log('produkty w koszyku', thisCart.products);
 
       thisCart.update();
     }
@@ -525,8 +525,8 @@
       thisCart.products.splice(index, 1);
       
       /* z DOM usun el. cartProduct.dom.wrapper */
-      //console.log(`el DOM do usuniecia: ${ cartProduct.dom.wrapper }`);
-      //cartProduct.dom.wrapper.remove();
+      console.log(`el DOM do usuniecia: ${ cartProduct.dom.wrapper }`);
+      cartProduct.dom.wrapper.remove();
 
       /*DONE wywyłaj metodę update aby przeliczyc ceny */
       thisCart.update();
