@@ -145,7 +145,7 @@ class Product{
 
   addToCart(){
     const thisProduct = this;
-
+    
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
     const event = new CustomEvent('add-to-cart',{
