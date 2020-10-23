@@ -31,14 +31,12 @@ class CartProduct{
   initAmountWidget(){
     const thisCartProduct = this;
 
-    thisCartProduct.dom.amountWidget = new amountWidget(thisCartProduct.dom.amountWidgetElem);
-      
+    thisCartProduct.dom.amountWidget = new amountWidget(thisCartProduct.dom.amountWidgetElem);  
     thisCartProduct.dom.amountWidgetElem.addEventListener('updated', function(){
       thisCartProduct.dom.amount = thisCartProduct.dom.amountWidget.value;
       thisCartProduct.price = thisCartProduct.priceSingle*thisCartProduct.dom.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
-      
   }
 
   remove(){
@@ -77,7 +75,6 @@ class CartProduct{
       priceSingle: thisCartProduct.priceSingle,
       params: thisCartProduct.params,
     };
-
     return productData; 
   }
 }

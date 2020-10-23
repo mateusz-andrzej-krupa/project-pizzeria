@@ -40,7 +40,7 @@ class Product{
   initAccordion(){
     const thisProduct = this;
 
-    const allAcordions = thisProduct.accordionTrigger; //lub: const allAcordions = thisProduct.element.querySelectorAll(select.menuProduct.clickable);
+    const allAcordions = thisProduct.accordionTrigger;
 
     for (let oneAccordion of allAcordions){
       oneAccordion.addEventListener('click', function(event){
@@ -70,15 +70,6 @@ class Product{
       event.preventDefault();
       thisProduct.processOrder();
     });
-    // DONE - improve yourself: 'submit || click'
-    /*
-      const test = function(event){
-        event.preventDefault();
-        thisProduct.processOrder();
-      };
-      thisProduct.form.addEventListener('submit', test);
-      thisProduct.form.addEventListener('click', test);
-      */
 
     for(let input of thisProduct.formInputs){
       input.addEventListener('change', function(){
@@ -116,7 +107,6 @@ class Product{
         }
 
         const imgSelector = '.' + paramId + '-' + optionId;
-
         const allImgs = thisProduct.imageWrapper.querySelectorAll(imgSelector);
 
         if (optionMarked) {
@@ -148,7 +138,6 @@ class Product{
     const thisProduct = this;
 
     thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem);
-
     thisProduct.amountWidgetElem.addEventListener('updated', function(){
       thisProduct.processOrder();
     });
@@ -159,16 +148,12 @@ class Product{
 
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
-
-    //app.cart.add(thisProduct);
-
     const event = new CustomEvent('add-to-cart',{
       bubbles: true,
       detail: {
         product: thisProduct,
       },
     });
-
     thisProduct.element.dispatchEvent(event);
   }
 }

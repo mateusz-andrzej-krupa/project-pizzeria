@@ -22,7 +22,6 @@ class amountWidget{
     const thisWidget = this;
       
     const newValue = Number(value);
-
     if( 
       newValue != thisWidget.value &&
         newValue >= settings.amountWidget.defaultMin &&

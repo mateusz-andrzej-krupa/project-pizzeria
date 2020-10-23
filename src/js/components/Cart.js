@@ -17,7 +17,6 @@ class Cart{
     const thisCart = this;
 
     thisCart.dom = {};
-
     thisCart.dom.wrapper = element;
     thisCart.dom.cartAccordionTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
@@ -40,7 +39,6 @@ class Cart{
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive); 
     };
     thisCart.dom.cartAccordionTrigger.addEventListener('click', cartReact);
-    //thisCart.dom.cartAccordionTrigger.addEventListener('mouseover', cartReact);
       
     thisCart.dom.productList.addEventListener('updated', function(){
       thisCart.update();
@@ -73,8 +71,7 @@ class Cart{
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
 
-    for (let product of thisCart.products) {
-        
+    for (let product of thisCart.products) {   
       thisCart.subtotalPrice += product.price;
       thisCart.totalNumber += product.amount;
     }
@@ -101,7 +98,6 @@ class Cart{
     const thisCart = this;
 
     const url = `${ settings.db.url }/${ settings.db.order }`;
-
     const payload = {
       address: thisCart.dom.address.value,
       phone: thisCart.dom.phone.value,
@@ -112,11 +108,9 @@ class Cart{
       products: [],
     };
 
-    for (let product of thisCart.products) {
-        
+    for (let product of thisCart.products) { 
       const test = product.getData();
       payload.products.push(test);
-        
     }
 
     const options = {

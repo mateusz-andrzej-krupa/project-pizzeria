@@ -23,15 +23,10 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-        
-        /* save parsedResponse as thisApp.data.products */
+        console.log('parsedResponse', parsedResponse);//test-api-response
         thisApp.data.products = parsedResponse;
-
-        /* execute initMenu method */
         thisApp.initMenu();
       });
-    console.log('thisApp.data=produkty pobrane z serwera: ', thisApp.data);
   },
 
   initCart: function(){
@@ -41,8 +36,7 @@ const app = {
     thisApp.cart = new Cart(cartElem);
 
     thisApp.productList = document.querySelector(select.containerOf.menu);
-
-    thisApp.productList.addEventListener('add-to-cart', function(event){
+    thisApp.productList.addEventListener('add-to-cart', function(event) {
       app.cart.add(event.detail.product);
       
     });
@@ -51,10 +45,6 @@ const app = {
   init: function(){
     const thisApp = this;
     console.log('*** App starting ***');
-    //console.log('thisApp:', thisApp);
-    //console.log('classNames:', classNames);
-    //console.log('settings:', settings);
-    //console.log('templates:', templates);
     thisApp.initData();
     thisApp.initCart();
   },
