@@ -8,7 +8,7 @@ class Booking{
   constructor(element){
     const thisBooking = this;
 
-    thisBooking.render(element);
+    thisBooking.render(element);  
     thisBooking.initWidget();
     thisBooking.getData();
   }
@@ -84,7 +84,6 @@ class Booking{
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
      
-
     for (let item of eventsRepeat){
       if(item.repeat == 'daily'){
         for (let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){
@@ -122,6 +121,8 @@ class Booking{
   
       thisBooking.booked[date][hourBlock].push(table); 
     }
+    
+
   }
 
   updateDOM(){
@@ -155,9 +156,23 @@ class Booking{
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
-
   }
 
+  selectAvailableTable(){
+    const thisBooking = this;
+    
+    // for each table of available table listen event on
+    for (let table of thisBooking.dom.tables){
+      table.addEventListener('click', function(){
+        // after the click on available table just add class booked 
+        table.classList.add(classNames.booking.tableBooked);
+      });
+    }
+    
+    // if picker.hour/date is changed remove class booked from that table
+      // done by call this method after updateDOM method
+  }
+    
   render(reservation){
     const thisBooking = this;
 
@@ -186,7 +201,8 @@ class Booking{
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
-    })
+    });
+    thisBooking.selectAvailableTable();    
   }
 
 }
