@@ -11,6 +11,7 @@ class Booking{
     thisBooking.render(element);  
     thisBooking.initWidget();
     thisBooking.getData();
+    thisBooking.selectAvailableTable();  
   }
 
   getData(){
@@ -105,7 +106,6 @@ class Booking{
     }
 
     const startHour = utils.hourToNumber(hour);
-    console.log(startHour);
 
     if(typeof thisBooking.booked[date][startHour] == 'undefined'){
       thisBooking.booked[date][startHour] = [];
@@ -170,7 +170,7 @@ class Booking{
         // after the click on available table just add class booked 
         table.classList.add(classNames.booking.tableBooked);
         thisBooking.tablePick = table.getAttribute(settings.booking.tableIdAttribute);
-        // console.log(thisBooking.tableId);
+        //console.log(thisBooking.tablePick);
       });
     }
     
@@ -183,7 +183,7 @@ class Booking{
 
     const allReservationData = {
       date: thisBooking.date,
-      hour: thisBooking.hour,
+      hour: thisBooking.hourPicker.value,
       table: thisBooking.tablePick,
       people: thisBooking.people,
       duration: thisBooking.duration,
@@ -214,7 +214,7 @@ class Booking{
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
       });
       
-    thisBooking.getData();
+    console.log('test');
   }
     
   render(reservation){
@@ -251,8 +251,7 @@ class Booking{
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
-    thisBooking.selectAvailableTable();    
-
+  
     thisBooking.dom.wrapper.addEventListener('submit', function(event){
       event.preventDefault();
       //console.log('book clicked');
