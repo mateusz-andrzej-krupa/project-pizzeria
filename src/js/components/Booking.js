@@ -62,7 +62,7 @@ class Booking{
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-        // console.log('rezerwacje pobrane z api', bookings);
+         console.log('rezerwacje pobrane z api', bookings);
         // console.log('wydarzenia jednorazowe', eventsCurrent);
         // console.log('wydarzenia cykliczne', eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
@@ -167,10 +167,17 @@ class Booking{
     // for each table of available table listen event on
     for (let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
-        // after the click on available table just add class booked 
-        table.classList.add(classNames.booking.tableBooked);
-        thisBooking.tablePick = table.getAttribute(settings.booking.tableIdAttribute);
-        //console.log(thisBooking.tablePick);
+        
+        if( !table.classList.contains(classNames.booking.tableBooked) ){
+          // after the click on available table just add class booked 
+          table.classList.add(classNames.booking.tableBooked);
+          thisBooking.tablePick = table.getAttribute(settings.booking.tableIdAttribute);
+          console.log('zarezerwowano stolik nr', thisBooking.tablePick);
+        } /*else {
+          table.classList.remove(classNames.booking.tableBooked);
+          thisBooking.tablePick = 'undefined';
+          console.log('usunieto rezerwacje stolika')
+        }*/
       });
     }
     
@@ -214,7 +221,7 @@ class Booking{
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
       });
       
-    console.log('test');
+    
   }
     
   render(reservation){
@@ -258,7 +265,6 @@ class Booking{
       thisBooking.sendReservation();
     });
   }
-
 }
 
 export default Booking;
