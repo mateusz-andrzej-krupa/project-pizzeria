@@ -125,7 +125,7 @@ class Cart{
       .then(function(response){
         return response.json();
       }).then(function(parsedResponse){
-        console.log('order was send to serwer and save by api - parsedResponse', parsedResponse);
+        console.log('order was send to server and save by api - parsedResponse', parsedResponse);
       });
   }
 }

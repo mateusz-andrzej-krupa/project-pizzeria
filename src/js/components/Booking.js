@@ -105,6 +105,7 @@ class Booking{
     }
 
     const startHour = utils.hourToNumber(hour);
+    console.log(startHour);
 
     if(typeof thisBooking.booked[date][startHour] == 'undefined'){
       thisBooking.booked[date][startHour] = [];
@@ -118,17 +119,19 @@ class Booking{
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
-  
       thisBooking.booked[date][hourBlock].push(table); 
     }
-    
-
   }
 
   updateDOM(){
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+
+    thisBooking.people = thisBooking.peopleAmount.value;
+    //console.log(thisBooking.people);
+    thisBooking.duration = thisBooking.hoursAmount.value;
+    //console.log(thisBooking.duration);
 
     let allAvailable = false;
 
@@ -166,11 +169,52 @@ class Booking{
       table.addEventListener('click', function(){
         // after the click on available table just add class booked 
         table.classList.add(classNames.booking.tableBooked);
+        thisBooking.tablePick = table.getAttribute(settings.booking.tableIdAttribute);
+        // console.log(thisBooking.tableId);
       });
     }
     
     // if picker.hour/date is changed remove class booked from that table
-      // done by call this method after updateDOM method
+    // done by call this method after updateDOM method but update peopleWidget or hoursWidget clear automaticly class "booked" 
+  }
+
+  sendReservation(){
+    const thisBooking = this;
+
+    const allReservationData = {
+      date: thisBooking.date,
+      hour: thisBooking.hour,
+      table: thisBooking.tablePick,
+      people: thisBooking.people,
+      duration: thisBooking.duration,
+      starters: ['water', 'bread'], //to find checkboxes
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+    // console.log(allReservationData);
+
+    const url = `${ settings.db.url }/${ settings.db.booking}`;
+    // console.log(url);
+
+    const payload = allReservationData;
+
+    const option = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, option)
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(parsedResponse){
+        console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
+      });
+      
+    thisBooking.getData();
   }
     
   render(reservation){
@@ -188,6 +232,11 @@ class Booking{
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
+    //console.log(thisBooking.dom.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
+    //console.log(thisBooking.dom.address);
   }
 
   initWidget(){
@@ -203,6 +252,12 @@ class Booking{
       thisBooking.updateDOM();
     });
     thisBooking.selectAvailableTable();    
+
+    thisBooking.dom.wrapper.addEventListener('submit', function(event){
+      event.preventDefault();
+      //console.log('book clicked');
+      thisBooking.sendReservation();
+    });
   }
 
 }
