@@ -62,7 +62,7 @@ class Booking{
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-         console.log('rezerwacje pobrane z api', bookings);
+        // console.log('rezerwacje pobrane z api', bookings);
         // console.log('wydarzenia jednorazowe', eventsCurrent);
         // console.log('wydarzenia cykliczne', eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
@@ -163,27 +163,60 @@ class Booking{
 
   selectAvailableTable(){
     const thisBooking = this;
-    
-    // for each table of available table listen event on
+
     for (let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
         
+        const tableClicked = table.getAttribute(settings.booking.tableIdAttribute);
+
         if( !table.classList.contains(classNames.booking.tableBooked) ){
-          // after the click on available table just add class booked 
           table.classList.add(classNames.booking.tableBooked);
-          thisBooking.tablePick = table.getAttribute(settings.booking.tableIdAttribute);
+          thisBooking.tablePick = tableClicked;
           console.log('zarezerwowano stolik nr', thisBooking.tablePick);
-        } /*else {
+          return;
+        } 
+        
+<<<<<<< HEAD
+        const dateSelected = thisBooking.datePicker.value;
+        const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
+        //console.log('kliknieto stolik nr', tableClicked);
+        //console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
+        //  thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
+
+        if ( !thisBooking.booked[dateSelected][hourSelected].includes(tableClicked) ){
+          console.log('Stolik niedostępny');
+          alert('Stolik niedostępny');
+        } else {
+=======
+        /* cel: zablokuj stoliki zarezerwowane już przez api*/
+        // tablica rezerwacji z api to thisBooking.booked 
+        // console.log('lista rezerwacjiz api- thisBooking.booked', thisBooking.booked);
+
+        // sprawdz czy klikniety stolik(id) znajduje sie w thisBooking.booked - dla daty.godziny (okreslonej w pickerach)
+        const dateSelected = thisBooking.datePicker.value;
+        // console.log('datePicker', dateSelected);
+        const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
+        // console.log('hourPicker', hourSelected);
+        console.log('kliknieto stolik nr', tableClicked);
+        console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
+          thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
+
+        if ( thisBooking.booked[dateSelected][hourSelected].includes(1) ){
+          // jesli tak to return, (wyswietl komunikat - 'Stolik niedostępny')
+          console.log('Stolik niedostępny');
+          //alert('Stolik niedostępny');
+          
+        } else {
+          // jesli nie to remove class booked;
+>>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
           table.classList.remove(classNames.booking.tableBooked);
           thisBooking.tablePick = 'undefined';
-          console.log('usunieto rezerwacje stolika')
-        }*/
+          console.log('usunieto rezerwacje stolika nr', tableClicked);     
+        }
       });
     }
-    
-    // if picker.hour/date is changed remove class booked from that table
-    // done by call this method after updateDOM method but update peopleWidget or hoursWidget clear automaticly class "booked" 
   }
+
 
   sendReservation(){
     const thisBooking = this;
@@ -191,7 +224,7 @@ class Booking{
     const allReservationData = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tablePick,
+      table: parseInt(thisBooking.tablePick),
       people: thisBooking.people,
       duration: thisBooking.duration,
       starters: ['water', 'bread'], //to find checkboxes
@@ -219,6 +252,11 @@ class Booking{
       })
       .then(function(parsedResponse){
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
+<<<<<<< HEAD
+        alert('Rezerwacja wyslana');
+=======
+>>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
+        thisBooking.getData();
       });
       
     
