@@ -176,8 +176,6 @@ class Booking{
           return;
         } 
         
-<<<<<<< HEAD
-<<<<<<< HEAD
         const dateSelected = thisBooking.datePicker.value;
         const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
         //console.log('kliknieto stolik nr', tableClicked);
@@ -188,33 +186,6 @@ class Booking{
           console.log('Stolik niedostępny');
           alert('Stolik niedostępny');
         } else {
-=======
-=======
->>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
-        /* cel: zablokuj stoliki zarezerwowane już przez api*/
-        // tablica rezerwacji z api to thisBooking.booked 
-        // console.log('lista rezerwacjiz api- thisBooking.booked', thisBooking.booked);
-
-        // sprawdz czy klikniety stolik(id) znajduje sie w thisBooking.booked - dla daty.godziny (okreslonej w pickerach)
-        const dateSelected = thisBooking.datePicker.value;
-        // console.log('datePicker', dateSelected);
-        const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
-        // console.log('hourPicker', hourSelected);
-        console.log('kliknieto stolik nr', tableClicked);
-        console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
-          thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
-
-        if ( thisBooking.booked[dateSelected][hourSelected].includes(1) ){
-          // jesli tak to return, (wyswietl komunikat - 'Stolik niedostępny')
-          console.log('Stolik niedostępny');
-          //alert('Stolik niedostępny');
-          
-        } else {
-          // jesli nie to remove class booked;
-<<<<<<< HEAD
->>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
-=======
->>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
           table.classList.remove(classNames.booking.tableBooked);
           thisBooking.tablePick = 'undefined';
           console.log('usunieto rezerwacje stolika nr', tableClicked);     
@@ -258,13 +229,7 @@ class Booking{
       })
       .then(function(parsedResponse){
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
-<<<<<<< HEAD
-<<<<<<< HEAD
         alert('Rezerwacja wyslana');
-=======
->>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
-=======
->>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
         thisBooking.getData();
       });
       
