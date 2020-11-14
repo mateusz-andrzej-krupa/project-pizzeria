@@ -177,6 +177,7 @@ class Booking{
         } 
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         const dateSelected = thisBooking.datePicker.value;
         const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
         //console.log('kliknieto stolik nr', tableClicked);
@@ -188,6 +189,8 @@ class Booking{
           alert('Stolik niedostępny');
         } else {
 =======
+=======
+>>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
         /* cel: zablokuj stoliki zarezerwowane już przez api*/
         // tablica rezerwacji z api to thisBooking.booked 
         // console.log('lista rezerwacjiz api- thisBooking.booked', thisBooking.booked);
@@ -208,6 +211,9 @@ class Booking{
           
         } else {
           // jesli nie to remove class booked;
+<<<<<<< HEAD
+>>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
+=======
 >>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
           table.classList.remove(classNames.booking.tableBooked);
           thisBooking.tablePick = 'undefined';
@@ -253,7 +259,10 @@ class Booking{
       .then(function(parsedResponse){
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
 <<<<<<< HEAD
+<<<<<<< HEAD
         alert('Rezerwacja wyslana');
+=======
+>>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
 =======
 >>>>>>> 240900894e4e0d2975b89c47af09c53ca31047b3
         thisBooking.getData();
