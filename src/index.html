@@ -64,7 +64,7 @@
 
   <div id="pages">
     <section id="home">
-      <div class="home-wrapper-1 container"></div>
+      <div class="home-wrapper-1"></div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -75,9 +75,15 @@
   </div>
 
     <script id="template-home-page" type="text/x-handlebars-template">
+
         <div class="home-wrapper-2">
           <div class="box1-panels">
-           <h2 class="page__title no-spacing">panels</h2>
+            <div class="child-to-box1-panels">
+              <img src="src/images/pizzeria-home/assets/pizza-1.jpg">
+            </div>
+            
+            <h2 class="page__title no-spacing">panels</h2>
+            
           </div>
           <div class="box2-carousel">
             <h2 class="page__title no-spacing">carousel</h2>
@@ -86,6 +92,7 @@
             <h2 class="page__title no-spacing">gallery</h2>
           </div>
         </div>
+
     </script>
 
     <script id="template-booking-widget" type="text/x-handlebars-template">

@@ -1,20 +1,14 @@
-h2 {
-    color: $color-main;
-    opacity: 100%;
-}
 .home-wrapper-1 {
-    background-color: $color-dark;
-    opacity: 100%;
-    padding: 10px ;
+    padding-top: 40px;
     display: flex;
-
+    justify-content: center;
+    
     & .home-wrapper-2 {
-
         background-color: $color-light;
-        max-width: 80%;
-
-
-
+        width: 56%;
         
-    }
+        & h2 {
+            color: $color-dark;
+        }
+    }   
 }
