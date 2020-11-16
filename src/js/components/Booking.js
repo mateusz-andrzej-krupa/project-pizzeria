@@ -182,7 +182,7 @@ class Booking{
         //console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
         //  thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
 
-        if ( !thisBooking.booked[dateSelected][hourSelected].includes(tableClicked) ){
+        if ( thisBooking.booked[dateSelected][hourSelected].includes(Number(tableClicked)) ){
           console.log('Stolik niedostępny');
           alert('Stolik niedostępny');
         } else {
