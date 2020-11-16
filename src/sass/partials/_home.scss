@@ -10,5 +10,25 @@
         & h2 {
             color: $color-dark;
         }
+        
+        & .box-panels {
+            display: flex;            
+            justify-content: center;
+            flex-direction: column;
+            
+            & .box-for-fotos {
+                display: flex;            
+                justify-content: center;
+                padding: 70px;
+                
+                & img {
+                    border-radius: 1px;
+                    margin: 5px 5px;
+                    height: 120px;
+                    width: 300px;
+                    object-fit: cover;
+                }
+            }
+        }
     }   
 }
