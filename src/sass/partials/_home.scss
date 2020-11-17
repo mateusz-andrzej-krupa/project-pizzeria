@@ -14,44 +14,51 @@
         }
         
         & .box-panels {
-            display: flex;            
+            padding-top: 70px;
+            display: flex;      
+            flex-wrap: wrap;      
             justify-content: center;
-            flex-direction: column;
+            flex-direction: row;
             
-            & .box-for-fotos {
-                display: flex;            
-                justify-content: center;
-                padding-top: 70px;
-                
-                & img {
-                    border-radius: 1px;
-                    margin: 4px 4px;
-                    height: 120px;
-                    width: 300px;
-                    object-fit: cover;
-                }
-            }
-       
-            & .box-hours {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                background-color: $color-main;
+
+            
+            & .box {
                 border-radius: 1px;
-                margin: 4px 4px 4px 47px;
+                margin: 4px 4px;
                 height: 120px;
-                width: 610px;
-                text-align: center;;
-
-                & p{
-                    text-transform: uppercase;
-                    color: $color-light;
-                    margin: 0 0;
-
-                }
+                width: 42%;
+                object-fit: cover;
+                background-position: center;
+                text-transform: uppercase;
+                color: $color-light;
+                flex-direction: column;
+                justify-content: center;
+            }    
                 
+            & p {
+                margin: 0 0;
+                display: none;
+            }
+            & p:hover {
+                display: flex;
+                
+
+            }
+            
+            & .order {
+                background-image: url(/images/pizzeria-home/assets/pizza-1.jpg);
+            }
+            
+            & .book {
+                background-image: url(/images/pizzeria-home/assets/pizza-2.jpg);
+            }
+                
+            & .hours {
+                background-color: $color-main;
+                width: 85%;
             }
         
         }
-    }   
+        
+    }
 }
