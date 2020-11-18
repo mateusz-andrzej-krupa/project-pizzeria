@@ -1,7 +1,6 @@
 .home-wrapper-1 {
     padding-top: 40px;
-    display: flex;
-    justify-content: center;
+    @include flex(row, center, center);
     
     & .home-wrapper-2 {
         background-color: $color-light;
@@ -10,17 +9,12 @@
         & h2 {
             color: $color-light;
             margin: 0 0;
-            text-align: center;
         }
         
         & .box-panels {
             padding-top: 70px;
-            display: flex;      
+            @include flex(row, center, center);
             flex-wrap: wrap;      
-            justify-content: center;
-            flex-direction: row;
-            
-
             
             & .box {
                 border-radius: 1px;
@@ -31,18 +25,27 @@
                 background-position: center;
                 text-transform: uppercase;
                 color: $color-light;
-                flex-direction: column;
-                justify-content: center;
+                @include flex(column, center, center);
+                position: relative;
             }    
-                
+            
+            & a {
+                @extend .page__title;
+                color: $color-light;
+                text-decoration: none;
+            }
+
             & p {
                 margin: 0 0;
-                display: none;
+                opacity: 0;
+                text-align: center;
             }
-            & p:hover {
-                display: flex;
-                
-
+            & .box p:hover {
+                opacity: 1;
+            }
+            
+            & .box.hours p {
+                opacity: 1;
             }
             
             & .order {
