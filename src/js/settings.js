@@ -69,6 +69,10 @@ export const select = {
   nav: {
     links: '.main-nav a',
   },
+  home: {
+    links: '.home-wrapper-1 .home-wrapper-2',
+    box: '.home-wrapper-1',
+  },
 };
 
 export const classNames = {
