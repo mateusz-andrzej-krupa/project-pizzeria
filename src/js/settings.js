@@ -70,8 +70,9 @@ export const select = {
     links: '.main-nav a',
   },
   home: {
-    links: '.home-wrapper-1 .home-wrapper-2',
-    box: '.home-wrapper-1',
+    links: '.home-wrapper-2 a',
+    smallWords: '.home-wrapper-2 p',
+
   },
 };
 

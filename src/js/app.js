@@ -11,9 +11,11 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
+    // console.log('pages', thisApp.pages);
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    thisApp.homeLinks = document.querySelectorAll(select.home.links);
-    console.log('homelink', thisApp.homeLinks);
+    // console.log('navlink', thisApp.navLinks);
+    // thisApp.homeLinks = document.querySelectorAll(select.home.links);
+    // console.log('homelink', thisApp.homeLinks);
     
     const idFromHash = window.location.hash.replace('#/', '');
     
@@ -105,8 +107,8 @@ const app = {
   initHomePage: function(){
     const thisApp = this;
 
-    const homePageArea = document.querySelector(select.containerOf.homePage);
-    thisApp.HomePage = new HomePage(homePageArea);
+    const homePage = document.querySelector(select.containerOf.homePage);
+    thisApp.HomePage = new HomePage(homePage);
   },
 
   init: function(){
