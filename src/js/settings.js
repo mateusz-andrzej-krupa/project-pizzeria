@@ -72,7 +72,7 @@ export const select = {
   home: {
     links: '.home-wrapper-2 a',
     smallWords: '.home-wrapper-2 p',
-
+    slideUp: '.animate__animated .animate__backInUp',
   },
 };
 
