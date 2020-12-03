@@ -44,7 +44,7 @@ class Product{
 
     for (let oneAccordion of allAcordions){
       oneAccordion.addEventListener('click', function(event){
-        console.log('target just has been clicked'); //potwierdzenie klikniecia
+        console.log('accordion just has been clicked'); //potwierdzenie klikniecia
         event.preventDefault();
         const addClassActiveToClicked = thisProduct.element.classList.contains(classNames.menuProduct.wrapperActive);
         if (addClassActiveToClicked){

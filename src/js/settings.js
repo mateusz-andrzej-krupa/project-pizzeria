@@ -70,9 +70,11 @@ export const select = {
     links: '.main-nav a',
   },
   home: {
+    box: '.box',
     links: '.home-wrapper-2 a',
     smallWords: '.home-wrapper-2 p',
-    slideUp: '.animate__animated .animate__backInUp',
+    slideUp1: 'animate__animated',
+    slideUp2: 'animate__backInUp',
   },
 };
 

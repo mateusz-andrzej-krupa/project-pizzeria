@@ -27,21 +27,37 @@ class homePage{
   wordsSlideUp(){
     const thisHomePage = this;
     
-    const homeLinks = thisHomePage.links = thisHomePage.element.querySelectorAll(select.home.links);
-    // console.log('linki w home page', thisHomePage.links);
-    const smallWords = thisHomePage.smallWords = thisHomePage.element.querySelectorAll(select.home.smallWords);
-    // console.log('male wyrazy', thisHomePage.smallWords);
+    const panelBoxes = thisHomePage.element.querySelectorAll(select.home.box);
+    console.log('boxes', panelBoxes);
     
-    for (let homeLink of homeLinks){
-      homeLink.addEventListener('click', function(event){
+    for (let panel of panelBoxes){
+      panel.addEventListener('mouseover', function(event){
         event.preventDefault();
-        // console.log('__________');
-        for (let smallWord of smallWords){
-          smallWord.classList.toggle(select.home.slideUp);
+
+        const smallWord = thisHomePage.element.querySelector(select.home.smallWords);
+        console.log('male wyrazy', smallWord);
+        if (smallWord) {
+          smallWord.classList.add(select.home.slideUp1);
+          smallWord.classList.add(select.home.slideUp2);
           console.log('class added');
         }
       });
     }
+
+    // const homeLinks = thisHomePage.links = thisHomePage.element.querySelectorAll(select.home.links);
+    // console.log('linki w home page', homeLinks);
+    
+    
+    // for (let homeLink of homeLinks){
+    //   homeLink.addEventListener('mouseover', function(event){
+    //     event.preventDefault();
+    //     // console.log('__________');
+    //     for (let smallWord of smallWords){
+    //       smallWord.classList.add(select.home.slideUp1);
+    //       smallWord.classList.add(select.home.slideUp2);
+    //     }
+    //   });
+    // }
   }
 
 }

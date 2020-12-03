@@ -44,10 +44,6 @@
             }
             
             
-            & .box_hours_p {
-                opacity: 1;
-            }
-            
             & .order {
                 background-image: url(/images/pizzeria-home/assets/pizza-1.jpg);
             }
@@ -55,13 +51,16 @@
             & .book {
                 background-image: url(/images/pizzeria-home/assets/pizza-2.jpg);
             }
-                
+            
             & .hours {
                 background-color: $color-main;
                 width: 85%;
+                & p {
+                    opacity: 1;
+                }
             }
-        
         }
+        
         
     }
 }
