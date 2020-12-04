@@ -30,19 +30,37 @@ class homePage{
     const panelBoxes = thisHomePage.element.querySelectorAll(select.home.box);
     console.log('boxes', panelBoxes);
     
+
     for (let panel of panelBoxes){
+      if (panel.dataset.animation && panel.dataset.animation == 'false'){
+        continue;
+      }
+
       panel.addEventListener('mouseover', function(event){
         event.preventDefault();
-
-        const smallWord = thisHomePage.element.querySelector(select.home.smallWords);
-        console.log('male wyrazy', smallWord);
-        if (smallWord) {
-          smallWord.classList.add(select.home.slideUp1);
-          smallWord.classList.add(select.home.slideUp2);
-          console.log('class added');
-        }
+          
+        const smallWord = this.querySelector(select.home.smallWords);
+        smallWord.classList.add(select.home.slideUp1);
+        smallWord.classList.add(select.home.slideUp2);
+          
       });
     }
+    
+    for (let panel of panelBoxes){
+      if (panel.dataset.animation && panel.dataset.animation == 'false'){
+        continue;
+      }
+      
+      panel.addEventListener('mouseleave', function(event){
+        event.preventDefault();
+        
+        const smallWord = this.querySelector(select.home.smallWords);
+        smallWord.classList.remove(select.home.slideUp1);
+        smallWord.classList.remove(select.home.slideUp2);
+
+      });
+    }
+
 
     // const homeLinks = thisHomePage.links = thisHomePage.element.querySelectorAll(select.home.links);
     // console.log('linki w home page', homeLinks);

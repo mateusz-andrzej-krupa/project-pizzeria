@@ -2,65 +2,65 @@
     padding-top: 40px;
     @include flex(row, center, center);
     
-    & .home-wrapper-2 {
+    .home-wrapper-2 {
         background-color: $color-light;
         width: 56%;
         
-        & h2 {
+        h2 {
             color: $color-light;
             margin: 0 0;
         }
         
-        & .box-panels {
+        .box-panels {
+            display: flex;
             padding-top: 70px;
-            @include flex(row, center, center);
             flex-wrap: wrap;      
             
-            & .box {
-                border-radius: 1px;
-                margin: 4px 4px;
-                height: 120px;
-                width: 42%;
-                object-fit: cover;
-                background-position: center;
-                text-transform: uppercase;
-                color: $color-light;
+            .box {
                 @include flex(column, center, center);
+                background-position: center;
+                border-radius: 1px;
+                color: $color-light;
+                height: 120px;
+                margin: 4px 4px;
+                object-fit: cover;
+                overflow: hidden;
                 position: relative;
+                text-transform: uppercase;
             }    
             
-            & a {
+            a {
                 @extend .page__title;
                 color: $color-light;
                 text-decoration: none;
             }
 
-            & p {
+            p {
+                font-size: 12px;
                 margin: 0 0;
                 opacity: 0;
                 text-align: center;
-                font-size: 12px;
                 text-transform: none;
             }
             
             
-            & .order {
+            .order {
                 background-image: url(/images/pizzeria-home/assets/pizza-1.jpg);
+                flex: 1;
             }
             
-            & .book {
+            .book {
                 background-image: url(/images/pizzeria-home/assets/pizza-2.jpg);
+                flex: 1;
             }
             
-            & .hours {
+            .hours {
                 background-color: $color-main;
-                width: 85%;
-                & p {
+                flex: 2 1 100%;
+                p {
                     opacity: 1;
                 }
             }
         }
-        
-        
     }
 }
