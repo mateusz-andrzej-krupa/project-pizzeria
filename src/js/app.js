@@ -4,7 +4,6 @@ import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 import HomePage from './components/HomePage.js';
 
-
 const app = {
 
   initPages: function(){

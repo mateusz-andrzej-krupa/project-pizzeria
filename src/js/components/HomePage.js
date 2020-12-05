@@ -1,3 +1,4 @@
+/* global Flickity */
 import { select, templates } from '../settings.js';
 import utils from '../utils.js';
 
@@ -7,6 +8,7 @@ class homePage{
 
     thisHomePage.renderHome();
     thisHomePage.wordsSlideUp();
+    thisHomePage.carusel();
   }
 
   renderHome(){
@@ -50,6 +52,20 @@ class homePage{
         smallWord.classList.remove(select.home.slideUp2);
       });
     }
+  }
+
+  carusel(){
+    // const thisHomePage = this;
+
+    console.log('caruzela dziala');
+    
+    const elem = document.querySelector('.main-carousel');
+    console.log('elem', elem);
+    const flkty = new Flickity( elem, {
+      // options
+      cellAlign: 'center',
+      autoPlay: true,
+    });
   }
 }
 

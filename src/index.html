@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>  
@@ -86,17 +87,41 @@
             <div class="box book">
               <h2><a class="page__title no-spacing" href="#booking">book a table</a></h2>
               <p class="animate__faster">Make a book online</p> 
-
             </div>
             <div class="box hours" data-animation="false">
               <h2 class="page__title no-spacing" >opening hours:</h2>
               <p>tue-sun, 12pm - 12am</p> 
             </div>
-            
           </div>
 
           <div class="box-carousel">
-            <h2 class="page__title no-spacing">carousel</h2>
+            <div class="main-carousel">
+              <div class="carousel-cell">
+                <img src="images/carusel/bryian.jpeg">
+                <div class="parent">
+                  <h4 class="page__title no-spacing">Best of the best</h3>
+                  <p>"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero."</p>
+                  <p>Bryian</p>
+                </div>
+              </div>
+              <div class="carousel-cell">
+                <img src="images/carusel/fox_corp.jpeg">
+                <div class="parent">
+                  <h4 class="page__title no-spacing">Best of the best</h3>
+                  <p>"We're lovin this tase of pizza flavour!"</p>
+                  <p>Fox Corp</p>
+                </div>
+              </div>
+              <div class="carousel-cell">
+                <img src="images/carusel/mia.jpeg">
+                <div class="parent">
+                  <h4 class="page__title no-spacing">Best of the best</h3>
+                  <p>"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."</p>
+                  <p>Mia</p>
+                </div>
+              </div>
+              </div>
+            </div>
           </div>
 
           <div class="box-gallery">
@@ -280,6 +305,7 @@
     </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>
