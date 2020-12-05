@@ -120,8 +120,6 @@
                             font-size: 16px;
                             text-align: left;
                         }
-                        p {
-                        }
                         p:last-of-type {
                             font-style: italic;
                         }
@@ -130,8 +128,26 @@
             }   
         }
 
-        .box-gallery h2 {
-            color: red;
+        .box-gallery {
+            @include flex(column center, center);
+            margin: 100px 0;
+            .one-foto {
+                @include flex(row, center, center);
+                flex-wrap: wrap;
+                img {
+                    border-radius: 5px;
+                    height: 100px;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                .icons{
+                    position: absolute;
+                    color: white;
+                    i:hover {
+                        color: red;
+                    }
+                }
+            }
         }
     }
 }
