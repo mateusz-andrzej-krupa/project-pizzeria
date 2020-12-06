@@ -86,6 +86,8 @@
             }
         }
         .box-carousel {
+            margin-bottom: 100px;
+            padding-bottom: 20px;
             
             .main-carousel {
                 * { box-sizing: border-box; }
@@ -108,9 +110,9 @@
                     img {
                         align-items: flex-start;
                         height: 100%;
-                        width: 200px;
+                        width: 30%;
                         object-fit: cover;
-                        margin: 0 45px;
+                        margin: 0 30px 0 15px;
                         border-radius: 5px;
                     }
                     .parent{
@@ -129,22 +131,34 @@
         }
 
         .box-gallery {
-            @include flex(column center, center);
-            margin: 100px 0;
-            .one-foto {
+            @include flex(row, center, center);
+            margin: 100px 30px;
+            flex-wrap: wrap;
+
+
+            .one-coment {
                 @include flex(row, center, center);
-                flex-wrap: wrap;
+                width: 30%;
+                margin: 5px 5px;
+                &:hover {
+                    .icons {
+                    opacity: 1;
+                    }
+                }
                 img {
                     border-radius: 5px;
-                    height: 100px;
+                    height: 200px;
                     width: 100%;
                     object-fit: cover;
                 }
                 .icons{
                     position: absolute;
                     color: white;
+                    opacity: 0;
+                    font-size: 20px;
                     i:hover {
                         color: red;
+
                     }
                 }
             }
