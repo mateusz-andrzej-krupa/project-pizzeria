@@ -132,10 +132,9 @@
 
         .box-gallery {
             @include flex(row, center, center);
-            margin: 100px 30px;
+            margin: 100px 30px 0px;
             flex-wrap: wrap;
-
-
+            }
             .one-coment {
                 @include flex(row, center, center);
                 width: 30%;
@@ -163,5 +162,11 @@
                 }
             }
         }
+        .instalink{
+            margin: 10px 50px 100px;
+            a {
+                color: red;
+            }
+
     }
 }
