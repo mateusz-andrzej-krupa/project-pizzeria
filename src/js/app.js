@@ -121,9 +121,9 @@ const app = {
   init: function(){
     const thisApp = this;
     console.log('*** App starting ***');
+    thisApp.initData();
     thisApp.initHomePage();
     thisApp.initPages();
-    thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
   },

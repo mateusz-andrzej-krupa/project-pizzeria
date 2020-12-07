@@ -56,12 +56,10 @@ class homePage{
 
   carusel(){
     // const thisHomePage = this;
-
-    console.log('caruzela dziala');
     
     const elem = document.querySelector('.main-carousel');
-    console.log('elem', elem);
-    const flkty = new Flickity( elem, {
+    // const flkty = 
+    new Flickity( elem, {
       // options
       cellAlign: 'center',
       autoPlay: true,
