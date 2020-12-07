@@ -123,10 +123,12 @@ export const settings = {
     order: 'order',
     booking: 'booking',
     event: 'event',
+    coments: 'coments',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
+
   },
 };
 

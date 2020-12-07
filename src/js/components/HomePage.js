@@ -1,14 +1,32 @@
 /* global Flickity */
-import { select, templates } from '../settings.js';
+import { select, templates, settings } from '../settings.js';
 import utils from '../utils.js';
 
 class homePage{
   constructor(){
     const thisHomePage = this;
 
+    thisHomePage.getData();
     thisHomePage.renderHome();
     thisHomePage.wordsSlideUp();
-    thisHomePage.carusel();
+  }
+
+  getData(){
+    const thisHomePage = this;
+
+    thisHomePage.data = {};
+    const url = settings.db.url + '/' + settings.db.coments;
+
+    fetch(url)
+      .then(function(rawResponse){
+        return rawResponse.json();
+      })
+      .then(function(parsedResponse){
+        console.log('coments throught api:', parsedResponse);//test-api-response        
+        thisHomePage.data.coments = parsedResponse;
+        thisHomePage.carusel();
+      });
+
   }
 
   renderHome(){

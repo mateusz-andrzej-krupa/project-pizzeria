@@ -92,7 +92,7 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);//test-api-response
+        console.log('products throught api', parsedResponse);//test-api-response
         thisApp.data.products = parsedResponse;
         thisApp.initMenu();
       });
