@@ -124,6 +124,7 @@ export const settings = {
     booking: 'booking',
     event: 'event',
     coments: 'coments',
+    gallery: 'gallery',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
