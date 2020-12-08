@@ -95,33 +95,21 @@
           </div>
 
           <div class="box-carousel">
+            
             <div class="main-carousel">
+              {{#coments}}
               <div class="carousel-cell">
                 <!-- image -->
-                <img src="images/carusel/bryian.jpeg">
+                <img src="{{ imageUrl }}">
                 <div class="parent">
                   <h4 class="page__title no-spacing">{{ title }}</h3>
-                  <p>"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero."</p>
-                  <p>Bryian</p>
+                  <p> "{{ opinion }}" </p>
+                  <p> -{{ author }}</p>
                 </div>
               </div>
-              <div class="carousel-cell">
-                <img src="images/carusel/fox_corp.jpeg">
-                <div class="parent">
-                  <h4 class="page__title no-spacing">Best of the best</h3>
-                  <p>"We're lovin this tase of pizza flavour!"</p>
-                  <p>Fox Corp</p>
-                </div>
-              </div>
-              <div class="carousel-cell">
-                <img src="images/carusel/mia.jpeg">
-                <div class="parent">
-                  <h4 class="page__title no-spacing">Best of the best</h3>
-                  <p>"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."</p>
-                  <p>Mia</p>
-                </div>
-              </div>
-              </div>
+              {{/coments}}
+              
+    
           </div>
 
           <div class="box-gallery">
@@ -169,7 +157,7 @@
 
             </div>            
           </div>
-          
+
           <div class="instalink">
             <a href=https://instagram.com>
               View more on Instagram

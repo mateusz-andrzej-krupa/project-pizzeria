@@ -7,8 +7,6 @@ class homePage{
     const thisHomePage = this;
 
     thisHomePage.getData();
-    thisHomePage.renderHome();
-    thisHomePage.wordsSlideUp();
   }
 
   getData(){
@@ -24,8 +22,11 @@ class homePage{
       .then(function(parsedResponse){
         console.log('coments throught api:', parsedResponse);//test-api-response        
         thisHomePage.data.coments = parsedResponse;
+        thisHomePage.renderHome();
+        thisHomePage.wordsSlideUp();
         thisHomePage.carusel();
       });
+      
 
   }
 

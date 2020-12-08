@@ -291,28 +291,22 @@
       "id": "coment1",
       "author": "Bryin",
       "title": "Best of the best",
-      "opninion": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.",
-      "images": [
-        "<img class= src=\"images/carusel/bryian.jpeg\">"
-      ]
+      "opinion": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.",
+      "imageUrl": "images/carusel/bryian.jpeg"
     },
     {
       "id": "coment2",
       "author": "Fox-corp",
       "title": "Most incredible pizza in town!",
-      "opninion": "We're lovin this tase of pizza flavour!",
-      "images": [
-        "<img class= src=\"images/carusel/fox_corp.jpeg\">"
-      ]
+      "opinion": "We're lovin this tase of pizza flavour!",
+      "imageUrl": "images/carusel/fox_corp.jpeg"
     },
     {
       "id": "coment3",
       "author": "Mia",
       "title": "Profesional service",
-      "opninion": "I'm suprised how great they are working together.",
-      "images": [
-        "<img class= src=\"images/carusel/mia.jpeg\">"
-      ]
+      "opinion": "I'm suprised how great they are working together.",
+      "imageUrl": "images/carusel/mia.jpeg"
     }
   ]
 }
