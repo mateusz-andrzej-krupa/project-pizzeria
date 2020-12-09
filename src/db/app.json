@@ -310,11 +310,14 @@
     }
   ],
   "gallery": [
-    { "image": "images/pizzeria-home/assets/pizza-4.jpg" },
-    { "image": "images/pizzeria-home/assets/pizza-5.jpg" },
-    { "image": "images/pizzeria-home/assets/pizza-6.jpg" },
-    { "image": "images/pizzeria-home/assets/pizza-7.jpg" },
-    { "image": "images/pizzeria-home/assets/pizza-8.jpg" },
-    { "image": "images/pizzeria-home/assets/pizza-9.jpg" }
+    { "image": [
+      "images/pizzeria-home/assets/pizza-4.jpg",
+      "images/pizzeria-home/assets/pizza-5.jpg",
+      "images/pizzeria-home/assets/pizza-6.jpg",
+      "images/pizzeria-home/assets/pizza-7.jpg",
+      "images/pizzeria-home/assets/pizza-8.jpg",
+      "images/pizzeria-home/assets/pizza-9.jpg"
+      ]
+    }
   ]
 }

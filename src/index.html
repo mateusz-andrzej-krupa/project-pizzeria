@@ -113,13 +113,15 @@
 
           <div class="box-gallery">
             {{#gallery}}
-            <div class="one-photo">
-              <img src="{{ image }}">
-              <div class="icons">
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-share-alt"></i>
-              </div>
-            </div> 
+              {{#image}}
+                <div class="one-photo">
+                  <img src="{{ [] }}">
+                  <div class="icons">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-share-alt"></i>
+                  </div>
+                </div> 
+                {{/image}}
             {{/gallery}}           
             <!--
             <div class="one-coment">
