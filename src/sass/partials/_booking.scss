@@ -62,15 +62,17 @@
     background: lighten($color-dark, 70%);
     box-shadow: none;
     height: $base-size;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid black;
   
     &__handle {
       box-shadow: none;
-      border: 0;
       transition-timing-function: cubic-bezier(0, 1, 0, 1);
       transition: transform 100ms;
   
       &::after {
-        display: none;
+        display: n1one;
       }
   
       &__horizontal {
@@ -83,10 +85,19 @@
     }
   
     &__fill {
-      background: $color-success;
-      transition-timing-function: cubic-bezier(0, 1, 0, 1);
+      background-image:      
+        linear-gradient(
+          to right, 
+          #4bc67d 30%, #f1c40f 45%, #b94a48 99%
+        );
+      position: relative;      
+      transition-timing-function: cubic-bezier(1, 1, 0, 1);
       transition: width 100ms;
       box-shadow: none;
+
+      &__horizontal {
+        width: 100%;
+      }
     }
   }
   
