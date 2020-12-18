@@ -93,7 +93,7 @@ class Booking{
       }
     }
  
-    // console.log('booked', thisBooking.booked);
+    console.log('świeże rezerwacje z api', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
@@ -164,48 +164,48 @@ class Booking{
   selectAvailableTable(){
     const thisBooking = this;
     
-    let tabelsStorage = [];
+    thisBooking.tabelsStorage = [];
 
     for (let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
         
         const tableClicked = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
+        console.log('klikniety ', tableClicked);
 
         if( !table.classList.contains(classNames.booking.tableBooked) ){
           table.classList.add(classNames.booking.tableBooked);
           console.log('Id klikniętego stolika', tableClicked);
-          tabelsStorage.push(parseInt(tableClicked));
-          console.log('zarezerwowano stolik nr', tabelsStorage);
+          thisBooking.tabelsStorage.push(parseInt(tableClicked));
+          console.log('zarezerwowano stolik/i nr', thisBooking.tabelsStorage);
           return;
         } 
         
         const dateSelected = thisBooking.datePicker.value;
         const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
-        //console.log('kliknieto stolik nr', tableClicked);
-        //console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
-        //  thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
+        // console.log('kliknieto stolik nr', tableClicked);
+        // console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
+        // thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
+        console.log('xxxx', thisBooking.booked[dateSelected][hourSelected].includes(parseInt(tableClicked)));
+        const tableFromApiIsSelected = ('xxxx', thisBooking.booked[dateSelected][hourSelected].includes(parseInt(tableClicked)));
 
-        if ( thisBooking.booked[dateSelected][hourSelected].includes(Number(tableClicked)) ){
+        if ( tableFromApiIsSelected || tableFromApiIsSelected === undefined ){
           console.log('Stolik niedostępny');
           alert('Stolik niedostępny');
         } else {
           table.classList.remove(classNames.booking.tableBooked);
           thisBooking.tablePick = 'undefined';
           
-          for( let i = 0; i < tabelsStorage.length; i++ ){
-            if(tabelsStorage.includes(tableClicked)){
-              const indexOfClicked = tabelsStorage.indexOf(tableClicked);
-              console.log('miejsce w tablicy kliknietego stolika', indexOfClicked);
-              const removedValue = tabelsStorage.splice(indexOfClicked, 1);
-              console.log('usunieta wartość', removedValue);
+          for( let i = 0; i < thisBooking.tabelsStorage.length; i++ ){
+            if(thisBooking.tabelsStorage.includes(tableClicked)){
+              const indexOfClicked = thisBooking.tabelsStorage.indexOf(tableClicked);
+              thisBooking.tabelsStorage.splice(indexOfClicked, 1);
 
               console.log(`
                 usunieto rezerwacje stolika nr ${ tableClicked }
-                wyczyszczono storage ${ tabelsStorage } 
+                wyczyszczono storage ${ thisBooking.tabelsStorage } 
                 `);     
             }
           }
-          // console.log('___________', thisBooking.tablePick);     
         }
       });
     }
@@ -215,17 +215,21 @@ class Booking{
   sendReservation(){
     const thisBooking = this;
 
+    console.log('xxxxx', thisBooking.tabelsStorage);
+    const tablesStorageToString = parseInt(thisBooking.tabelsStorage.join(', '));
+    console.log('xxxxx', tablesStorageToString);
+    
     const allReservationData = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tabelsStorage,
+      table: tablesStorageToString,
       people: thisBooking.people,
       duration: thisBooking.duration,
       starters: ['water', 'bread'], //to find checkboxes
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
-    // console.log(allReservationData);
+    console.log(allReservationData);
 
     const url = `${ settings.db.url }/${ settings.db.booking}`;
     // console.log(url);

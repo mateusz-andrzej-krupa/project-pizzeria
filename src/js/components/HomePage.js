@@ -15,7 +15,6 @@ class homePage{
     thisHomePage.data = {};
     const urlComents = settings.db.url + '/' + settings.db.coments;
     const urlGallery = settings.db.url + '/' + settings.db.gallery;
-    console.log('gallery', urlGallery);
     
     Promise.all([
       fetch(urlComents),
@@ -31,8 +30,8 @@ class homePage{
         ]);
       })
       .then(function([comentsResponse, galleryResponse]){
-        console.log('coments throught api:', comentsResponse);//test-api-response        
-        console.log('gallery throught api:', galleryResponse);//test-api-response        
+        // console.log('coments throught api:', comentsResponse);//test-api-response        
+        // console.log('gallery throught api:', galleryResponse);//test-api-response        
         thisHomePage.data.coments = comentsResponse;
         thisHomePage.data.gallery = galleryResponse;
         thisHomePage.renderHome();
