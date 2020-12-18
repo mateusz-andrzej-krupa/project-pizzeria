@@ -163,16 +163,19 @@ class Booking{
 
   selectAvailableTable(){
     const thisBooking = this;
+    
+    let tabelsStorage = [];
 
     for (let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
         
-        const tableClicked = table.getAttribute(settings.booking.tableIdAttribute);
+        const tableClicked = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
 
         if( !table.classList.contains(classNames.booking.tableBooked) ){
           table.classList.add(classNames.booking.tableBooked);
-          thisBooking.tablePick = tableClicked;
-          console.log('zarezerwowano stolik nr', thisBooking.tablePick);
+          console.log('Id klikniętego stolika', tableClicked);
+          tabelsStorage.push(parseInt(tableClicked));
+          console.log('zarezerwowano stolik nr', tabelsStorage);
           return;
         } 
         
@@ -188,7 +191,21 @@ class Booking{
         } else {
           table.classList.remove(classNames.booking.tableBooked);
           thisBooking.tablePick = 'undefined';
-          console.log('usunieto rezerwacje stolika nr', tableClicked);     
+          
+          for( let i = 0; i < tabelsStorage.length; i++ ){
+            if(tabelsStorage.includes(tableClicked)){
+              const indexOfClicked = tabelsStorage.indexOf(tableClicked);
+              console.log('miejsce w tablicy kliknietego stolika', indexOfClicked);
+              const removedValue = tabelsStorage.splice(indexOfClicked, 1);
+              console.log('usunieta wartość', removedValue);
+
+              console.log(`
+                usunieto rezerwacje stolika nr ${ tableClicked }
+                wyczyszczono storage ${ tabelsStorage } 
+                `);     
+            }
+          }
+          // console.log('___________', thisBooking.tablePick);     
         }
       });
     }
@@ -201,7 +218,7 @@ class Booking{
     const allReservationData = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: parseInt(thisBooking.tablePick),
+      table: thisBooking.tabelsStorage,
       people: thisBooking.people,
       duration: thisBooking.duration,
       starters: ['water', 'bread'], //to find checkboxes
