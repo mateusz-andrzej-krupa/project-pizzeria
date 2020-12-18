@@ -250,7 +250,10 @@ class Booking{
       })
       .then(function(parsedResponse){
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
+        thisBooking.tabelsStorage = [];
+        console.log('wyczyszczono tablesStorage', thisBooking.tabelsStorage);
         alert('Rezerwacja wyslana');
+
         thisBooking.getData();
       });
       
