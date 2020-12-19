@@ -114,7 +114,6 @@ class Booking{
     thisBooking.booked[date][startHour].push(table);
 
     for(let hourBlock = startHour; hourBlock < startHour+duration; hourBlock += 0.5){
-      // console.log('loop', hourBlock);
 
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
@@ -129,9 +128,7 @@ class Booking{
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
     thisBooking.people = thisBooking.peopleAmount.value;
-    //console.log(thisBooking.people);
     thisBooking.duration = thisBooking.hoursAmount.value;
-    //console.log(thisBooking.duration);
 
     let allAvailable = false;
 
@@ -158,54 +155,63 @@ class Booking{
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+      thisBooking.tablesStorage = [];
     }
   }
 
   selectAvailableTable(){
     const thisBooking = this;
     
-    thisBooking.tabelsStorage = [];
+    thisBooking.tablesStorage = [];
+    console.log('tablica storage', thisBooking.tablesStorage);
+
 
     for (let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
         
         const tableClicked = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
-        console.log('klikniety ', tableClicked);
 
         if( !table.classList.contains(classNames.booking.tableBooked) ){
           table.classList.add(classNames.booking.tableBooked);
-          console.log('Id klikniętego stolika', tableClicked);
-          thisBooking.tabelsStorage.push(parseInt(tableClicked));
-          console.log('zarezerwowano stolik/i nr', thisBooking.tabelsStorage);
+          thisBooking.tablesStorage.push(tableClicked);
+          console.log('zarezerwowano stolik/i nr', thisBooking.tablesStorage);
+          thisBooking.tablesStorageToString = thisBooking.tablesStorage.join(', ');
+          console.log('tablica storage zmeiniona na string', thisBooking.tablesStorageToString);
+                
           return;
         } 
         
         const dateSelected = thisBooking.datePicker.value;
         const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
-        // console.log('kliknieto stolik nr', tableClicked);
-        // console.log('czy klikniety stolik jest juz zarezerwowany przez api?', 
-        // thisBooking.booked[dateSelected][hourSelected].includes(tableClicked));
-        console.log('xxxx', thisBooking.booked[dateSelected][hourSelected].includes(parseInt(tableClicked)));
-        const tableFromApiIsSelected = ('xxxx', thisBooking.booked[dateSelected][hourSelected].includes(parseInt(tableClicked)));
 
-        if ( tableFromApiIsSelected || tableFromApiIsSelected === undefined ){
-          console.log('Stolik niedostępny');
-          alert('Stolik niedostępny');
-        } else {
+        const removeSelectionFromClickedTables = function(){
           table.classList.remove(classNames.booking.tableBooked);
-          thisBooking.tablePick = 'undefined';
           
-          for( let i = 0; i < thisBooking.tabelsStorage.length; i++ ){
-            if(thisBooking.tabelsStorage.includes(tableClicked)){
-              const indexOfClicked = thisBooking.tabelsStorage.indexOf(tableClicked);
-              thisBooking.tabelsStorage.splice(indexOfClicked, 1);
-
-              console.log(`
-                usunieto rezerwacje stolika nr ${ tableClicked }
-                wyczyszczono storage ${ thisBooking.tabelsStorage } 
-                `);     
+          for( let i = 0; i < thisBooking.tablesStorage.length; i++ ){
+            if(thisBooking.tablesStorage.includes(tableClicked)){
+              const indexOfClicked = thisBooking.tablesStorage.indexOf(tableClicked);
+              thisBooking.tablesStorage.splice(indexOfClicked, 1);
+              console.log('usunieto rezerwacje stolika nr :', tableClicked);
+              console.log('wyczyszczono storage',thisBooking.tablesStorage);
             }
           }
+        };
+
+        const reservationIfExistInApi = thisBooking.booked[dateSelected][hourSelected];
+        console.log('reservationIfExist', reservationIfExistInApi);
+        
+        if (reservationIfExistInApi) {
+          const tableFromApiIsSelected = thisBooking.booked[dateSelected][hourSelected].includes(parseInt(tableClicked));
+          console.log('tableFromApiIsSelected', tableFromApiIsSelected);
+
+          if ( tableFromApiIsSelected ){
+            console.log('Stolik niedostępny');
+            alert('Stolik niedostępny');
+          } else {
+            removeSelectionFromClickedTables();
+          }
+        } else {
+          removeSelectionFromClickedTables();
         }
       });
     }
@@ -214,15 +220,11 @@ class Booking{
 
   sendReservation(){
     const thisBooking = this;
-
-    console.log('xxxxx', thisBooking.tabelsStorage);
-    const tablesStorageToString = parseInt(thisBooking.tabelsStorage.join(', '));
-    console.log('xxxxx', tablesStorageToString);
     
     const allReservationData = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: tablesStorageToString,
+      table: thisBooking.tablesStorageToString,
       people: thisBooking.people,
       duration: thisBooking.duration,
       starters: ['water', 'bread'], //to find checkboxes
@@ -232,7 +234,6 @@ class Booking{
     console.log(allReservationData);
 
     const url = `${ settings.db.url }/${ settings.db.booking}`;
-    // console.log(url);
 
     const payload = allReservationData;
 
@@ -250,11 +251,11 @@ class Booking{
       })
       .then(function(parsedResponse){
         console.log('rezerwacja wyslana do serwera poprzez API', parsedResponse);
-        thisBooking.tabelsStorage = [];
-        console.log('wyczyszczono tablesStorage', thisBooking.tabelsStorage);
         alert('Rezerwacja wyslana');
-
+        
         thisBooking.getData();
+        thisBooking.tablesStorage = [];
+        console.log('wyczyszczono tablesStorage', thisBooking.tablesStorage);
       });
       
     
@@ -277,9 +278,7 @@ class Booking{
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
-    //console.log(thisBooking.dom.phone);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
-    //console.log(thisBooking.dom.address);
   }
 
   initWidget(){
@@ -294,10 +293,9 @@ class Booking{
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
-  
+    
     thisBooking.dom.wrapper.addEventListener('submit', function(event){
       event.preventDefault();
-      //console.log('book clicked');
       thisBooking.sendReservation();
     });
   }
