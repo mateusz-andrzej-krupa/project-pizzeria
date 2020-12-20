@@ -72,28 +72,52 @@ class Booking{
   parseData(bookings, eventsCurrent, eventsRepeat){
     const thisBooking = this;
 
-    thisBooking.booked = {};
 
+    thisBooking.booked = {};
     for (let item of bookings){
+      // console.log('>> table from bookings', item.table);
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
-
+    
     for (let item of eventsCurrent){
+      // console.log('>> table from eventCurrent', item.table);
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
     
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
-     
+    
     for (let item of eventsRepeat){
       if(item.repeat == 'daily'){
+        // console.log('>> table from eventRepeat', item.table);
         for (let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){
           thisBooking.makeBooked(utils.dateToStr(loopDate), item.hour, item.duration, item.table);
         }
       }
     }
- 
+
+    for (let elDate in thisBooking.booked){
+      console.log('1. w booked key=data {elDate} to: ', elDate); //, ' ma wartość: ', thisBooking.booked[elDate]);
+      for (let elHour in thisBooking.booked[elDate]){
+        console.log(' 2. w {elDate} key=pojedyncza godzina {elHour} to: ', elHour); // ' ma wartość: ', thisBooking.booked[elDate][elHour]);
+        console.log('  3. tablica sotlikow: ',thisBooking.booked[elDate][elHour]);
+        for ( let elTable in thisBooking.booked[elDate][elHour]){
+          let a = parseInt(thisBooking.booked[elDate][elHour][elTable]);
+          console.log('   4. [eltable] przerobiony na number', a);
+          thisBooking.booked[elDate][elHour].shift();
+          console.log('    5. shift: ', thisBooking.booked[elDate][elHour]);
+          thisBooking.booked[elDate][elHour].push(a);
+          console.log('     6.booked is: ', thisBooking.booked[elDate][elHour]);
+        }
+      }
+    }
+    
     console.log('świeże rezerwacje z api', thisBooking.booked);
+    
+    // console.log('data z thisbooking.date', thisBooking.date);
+    // console.log('rezerwacje poprawione przez new Set', thisBooking.booked[date][startHour]);
+    // thisBooking.booked = [...new Set(thisBooking.booked[date][startHour])];
+    // console.log('test new set', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
@@ -101,27 +125,35 @@ class Booking{
   makeBooked(date, hour, duration, table){
     const thisBooking = this;
 
+    // console.log('data to wlasnie ta data', date);
+
     if(typeof thisBooking.booked[date] == 'undefined'){
       thisBooking.booked[date] = {};
     }
-
+    
     const startHour = utils.hourToNumber(hour);
-
-    if(typeof thisBooking.booked[date][startHour] == 'undefined'){
+ 
+    if ( typeof thisBooking.booked[date][startHour] == 'undefined') {
       thisBooking.booked[date][startHour] = [];
     }
 
+    /* [to do] change api->> table from string to array and correct data "table" in app.json */
+    /* let a = [1,2,3]; // thisBooking.booked[date][startHour]
+    const table = [1,1,2,2,3,3];
+    a = [...new Set([...a, ...table])]; */
+    
     thisBooking.booked[date][startHour].push(table);
 
     for(let hourBlock = startHour; hourBlock < startHour+duration; hourBlock += 0.5){
-
+      
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
       thisBooking.booked[date][hourBlock].push(table); 
     }
+    
   }
-
+  
   updateDOM(){
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
@@ -175,8 +207,8 @@ class Booking{
           table.classList.add(classNames.booking.tableBooked);
           thisBooking.tablesStorage.push(tableClicked);
           console.log('zarezerwowano stolik/i nr', thisBooking.tablesStorage);
-          thisBooking.tablesStorageToString = thisBooking.tablesStorage.join(', ');
-          console.log('tablica storage zmeiniona na string', thisBooking.tablesStorageToString);
+          // thisBooking.tablesStorageToString = thisBooking.tablesStorage.join(', ');
+          // console.log('tablica storage zmeiniona na string', thisBooking.tablesStorageToString);
                 
           return;
         } 
@@ -217,14 +249,13 @@ class Booking{
     }
   }
 
-
   sendReservation(){
     const thisBooking = this;
     
     const allReservationData = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tablesStorageToString,
+      table: thisBooking.tablesStorage,
       people: thisBooking.people,
       duration: thisBooking.duration,
       starters: ['water', 'bread'], //to find checkboxes
