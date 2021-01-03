@@ -86,7 +86,7 @@ class Booking{
     
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
-    
+     
     for (let item of eventsRepeat){
       if(item.repeat == 'daily'){
         // console.log('>> table from eventRepeat', item.table);
