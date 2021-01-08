@@ -15,7 +15,6 @@ class homePage{
     thisHomePage.data = {};
     const urlComents = settings.db.url + '/' + settings.db.coments;
     const urlGallery = settings.db.url + '/' + settings.db.gallery;
-    console.log('gallery', urlGallery);
     
     Promise.all([
       fetch(urlComents),
@@ -31,8 +30,6 @@ class homePage{
         ]);
       })
       .then(function([comentsResponse, galleryResponse]){
-        console.log('coments throught api:', comentsResponse);//test-api-response        
-        console.log('gallery throught api:', galleryResponse);//test-api-response        
         thisHomePage.data.coments = comentsResponse;
         thisHomePage.data.gallery = galleryResponse;
         thisHomePage.renderHome();
@@ -48,6 +45,23 @@ class homePage{
     thisHomePage.element = utils.createDOMFromHTML(generateHTML);
     const homePageContainer = document.querySelector(select.containerOf.homePage);
     homePageContainer.appendChild(thisHomePage.element);
+
+    const homeLinks = document.querySelectorAll(select.home.links);
+
+    for (let link of homeLinks){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        const homeLinkClickEvent = new CustomEvent('homeLinkClick', {detail: {id: id}});
+        window.dispatchEvent(homeLinkClickEvent);
+      
+        window.location.hash = `#/${ id }`;
+      });
+    }
+
+
   }
   
   wordsSlideUp(){
